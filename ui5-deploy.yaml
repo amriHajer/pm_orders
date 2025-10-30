@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: acm.analysecoutmaintenance
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: https://sap-dv-s4-1.infra.smartpost.tn:44300/
+          client: '100'
+        app:
+          name: ZANALYSE_COUT
+          description: application fiori analyse cout de maintenance
+          package: Z_PFE_ACM
+          transport: S4DK902981
+        exclude:
+          - /test/

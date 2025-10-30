@@ -1,0 +1,54 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:smart="sap.ui.comp.smartfilterbar"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    controllerName="acm.analyse.cout.maintenance.controller.Detail">
+    <Page title="analyse des coûts de maintenance">
+        <content>
+            <VBox>
+                <smart:SmartFilterBar id="filterBar" entitySet="Z_CDS_ACM" />
+                <Button text="Go" press="onGoPressed" />
+                <Select change="onChartTypeChange" selectedKey="{chartTypes>/selectedChart}">
+                    <items>
+                        <Item key="{chartTypes>key}" text="{chartTypes>text}" />
+                    </items>
+                </Select>
+                <Button text="Customize Chart" press="onCustomizeChart" />
+                <viz:VizFrame id="costChart" width="100%" height="400px" vizProperties="{ plotArea: { dataPointStyle: { rules: [{ dataContext: {}, properties: { color: '{viewModel>/chartSettings/color}' } }] } }, title: { visible: true, text: 'Maintenance Costs by Equipment' }, legend: { visible: '{viewModel>/chartSettings/showLegend}' }}">
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset data="{/Z_CDS_ACM}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Equipment" value="{Equipment}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition name="Total_couts_reels" value="{path: 'Total_couts_reels', formatter: '.formatter.formatCurrency', parts: [{path: 'Total_couts_reels'}, {path: 'waers'}]}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                </viz:VizFrame>
+                <Table items="{/Z_CDS_ACM}" beforeRebind="onBeforeRebindTable">
+                    <columns>
+                        <Column>
+                            <Text text="Equipment" />
+                        </Column>
+                        <Column>
+                            <Text text="Total coûts réels" />
+                        </Column>
+                        <Column>
+                            <Text text="Poste technique" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <Text text="{Equipment}" />
+                            <Text text="{path: 'Total_couts_reels', type: 'sap.ui.model.type.Float', formatOptions: { style: 'standard' }, formatter: '.formatter.formatCurrency', parts: [{path: 'Total_couts_reels'}, {path: 'waers'}]}" />
+                            <Text text="{Poste_Technique}" />
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

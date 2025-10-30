@@ -1,0 +1,204 @@
+{
+    "_version": "1.60.0",
+    "sap.app": {
+        "id": "acm.analysecoutmaintenance",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:alp",
+            "version": "1.17.4",
+            "toolsId": "dfa2acb1-866c-4fae-b093-7e774d542c3d"
+        },
+        "dataSources": {
+            "Z_CDS_ACM_CDS_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='Z_CDS_ACM_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/mainService/Z_CDS_ACM_CDS_VAN.xml"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            },
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/Z_CDS_ACM_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "Z_CDS_ACM_CDS_VAN",
+                        "annotation"
+                    ],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "pdfService": {
+                "uri": "/sap/opu/odata/sap/ZPM_PDF_GATEWAY_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.120.14",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.f": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.viz": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "acm.analysecoutmaintenance.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "pdfModel": {
+                "dataSource": "pdfService",
+                "preload": false
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [],
+            "targets": {}
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.suite.ui.generic.template.AnalyticalListPage.view.ListReport": {
+                        "controllerName": "acm.analysecoutmaintenance.controller.ChartExtension"
+                    },
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "controllerName": "acm.analysecoutmaintenance.ext.controller.ObjectPageExt",
+                        "sap.ui.generic.app": {
+                            "Z_CDS_ACM": {
+                                "EntitySet": "Z_CDS_ACM",
+                                "Header": {
+                                    "Actions": {
+                                        "imprimer": {
+                                            "id": "imprimerButton",
+                                            "text": "imprimer",
+                                            "press": "PrintPdf",
+                                            "requiresSelection": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui.generic.app": {
+        "_version": "1.3.0",
+        "settings": {
+            "forceGlobalRefresh": false,
+            "objectPageHeaderType": "Dynamic",
+            "considerAnalyticalParameters": true,
+            "showDraftToggle": false
+        },
+        "pages": {
+            "AnalyticalListPage|Z_CDS_ACM": {
+                "entitySet": "Z_CDS_ACM",
+                "component": {
+                    "name": "sap.suite.ui.generic.template.AnalyticalListPage",
+                    "list": true,
+                    "settings": {
+                        "condensedTableLayout": true,
+                        "showGoButtonOnFilterBar": true,
+                        "tableType": "AnalyticalTable" ,
+                        "qualifier": "VisualFilterPresentation" ,
+                       "defaultFilterMode": "compact" ,
+                        "autoHide": true,
+                        "smartVariantManagement": false,
+                        "tableSettings": {
+                            "multiSelect": false
+                        },
+                        "keyPerformanceIndicators": {
+                            
+                           
+                        },
+                        "chartExtension": {
+                            "id": "chartExtension",
+                            "className": "acm.analysecoutmaintenance.ext.ChartExtension"
+                        }
+                    }
+                },
+                "pages": {
+                    "ObjectPage|Z_CDS_ACM": {
+                        "entitySet": "Z_CDS_ACM",
+                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "analytical"
+    }
+}

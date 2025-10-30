@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="Z_CDS_ACM_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Z_CDS_ACMType" sap:label="main cds for ACM app" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Equipment"/>
+                </Key>
+                <Property Name="Equipment" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Equipment" sap:quickinfo="Equipment Number" sap:value-list="standard"/>
+                <Property Name="Poste_Technique" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Poste technique" sap:quickinfo="Functional Location" sap:value-list="standard"/>
+                <Property Name="Date_Mois" Type="Edm.String" MaxLength="7" sap:display-format="NonNegative" sap:label="Mois" sap:quickinfo="Period to analyze - month" sap:value-list="standard"/>
+                <Property Name="Division_Localisation" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Division de localisation" sap:quickinfo="Maintenance Plant" sap:value-list="standard"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Division de planification" sap:quickinfo="Maintenance Planning Plant" sap:value-list="standard"/>
+                <Property Name="Groupe_Gestionnaire" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Groupe gestionnaire" sap:quickinfo="Planner Group for Customer Service and Plant Maintenance" sap:value-list="standard"/>
+                <Property Name="Nombre_avis" Type="Edm.Decimal" Precision="9" Scale="0" sap:label="Nombre d’avis" sap:quickinfo="No.of recorded notifications"/>
+                <Property Name="Nombre_arrets" Type="Edm.Decimal" Precision="9" Scale="0" sap:label="Nombre d’arrêts" sap:quickinfo="Number of machine breakdowns reported"/>
+                <Property Name="Total_couts_estimes" Type="Edm.Decimal" Precision="16" Scale="3" sap:label="Total coûts estimés" sap:quickinfo="Total maintenance costs (estimated)"/>
+                <Property Name="Total_couts_reels" Type="Edm.Decimal" Precision="15" Scale="3" sap:label="Total coûts réels" sap:value-list="standard"/>
+                <Property Name="Categorie_Equipment" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Catégorie d’équipement" sap:quickinfo="Equipment category" sap:value-list="standard"/>
+                <Property Name="Type_Objet_Technique" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Type d’objet technique" sap:quickinfo="Type of Technical Object" sap:value-list="standard"/>
+            </EntityType>
+            <EntityType Name="Z_VH_EQARTType" sap:label="value help pour Type d’objet technique" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Type_Objet_Technique"/>
+                </Key>
+                <Property Name="Type_Objet_Technique" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Type d'objet technique" sap:quickinfo="Type of Technical Object"/>
+                <Property Name="Description_Type" Type="Edm.String" MaxLength="20" sap:label="text type d'objet" sap:quickinfo="Text for Object Type"/>
+            </EntityType>
+            <EntityType Name="Z_VH_EQTYPType" sap:label="value help pour Catégorie d’équipement" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Categorie_Equipment"/>
+                </Key>
+                <Property Name="Categorie_Equipment" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Equipment category"/>
+                <Property Name="Description_Categorie" Type="Edm.String" MaxLength="30" sap:label="designation" sap:quickinfo="Equipment category description"/>
+            </EntityType>
+            <EntityType Name="Z_VH_EQUNRType" sap:label="Value Help pour Numéro d'Équipement" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Numero_Equipment"/>
+                </Key>
+                <Property Name="Numero_Equipment" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Equipment" sap:quickinfo="Equipment Number"/>
+                <Property Name="Equipment_Description" Type="Edm.String" MaxLength="40" sap:label="Description de l'objet technique" sap:quickinfo="Description of technical object"/>
+            </EntityType>
+            <EntityType Name="Z_VH_IAKOSISTType" sap:label="value help pour Poste technique" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Total_couts_reels"/>
+                </Key>
+                <Property Name="Total_couts_reels" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:label="Coût Réel" sap:quickinfo="Total(actual) maintenance costs"/>
+            </EntityType>
+            <EntityType Name="Z_VH_INGRPType" sap:label="value help pour Groupe gestionnaire" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Groupe_Gestionnaire"/>
+                </Key>
+                <Property Name="Groupe_Gestionnaire" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Groupe gestionnaire" sap:quickinfo="Planner Group for Customer Service and Plant Maintenance"/>
+                <Property Name="Groupe_Gestionnaire_Des" Type="Edm.String" MaxLength="18" sap:label="Description du Groupe gestionnaire" sap:quickinfo="Name of the Maintenance Planner Group"/>
+            </EntityType>
+            <EntityType Name="Z_VH_IWERKType" sap:label="value help pour Division planification" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Division"/>
+                </Key>
+                <Property Name="Division" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Division de planification PM" sap:quickinfo="Maintenance Planning Plant"/>
+                <Property Name="Division_Desc" Type="Edm.String" MaxLength="30" sap:label="Description" sap:quickinfo="Name"/>
+            </EntityType>
+            <EntityType Name="Z_VH_SPMONType" sap:label="value help pour les mois" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="mois_du_maintenance"/>
+                </Key>
+                <Property Name="mois_du_maintenance" Type="Edm.String" Nullable="false" MaxLength="7" sap:display-format="NonNegative" sap:label="Date du maintenance" sap:quickinfo="Period to analyze - month"/>
+                <Property Name="nom_du_mois" Type="Edm.String" MaxLength="12" sap:label="Mois"/>
+                <Property Name="annee" Type="Edm.String" MaxLength="4" sap:label="Année"/>
+            </EntityType>
+            <EntityType Name="Z_VH_SWERKType" sap:label="value help pour Division de localisation" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Division_Localisation"/>
+                </Key>
+                <Property Name="Division_Localisation" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Division de localisation" sap:quickinfo="Maintenance Plant"/>
+                <Property Name="Division_Localisation_Desc" Type="Edm.String" MaxLength="30" sap:label="designation" sap:quickinfo="Name"/>
+            </EntityType>
+            <EntityType Name="Z_VH_TPLNRType" sap:label="value help pour Poste technique" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Poste_Technique"/>
+                </Key>
+                <Property Name="Poste_Technique" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Poste technique" sap:quickinfo="Functional Location"/>
+                <Property Name="SiteCode" Type="Edm.String" MaxLength="3" sap:label="Code Site"/>
+                <Property Name="DeptCode" Type="Edm.String" MaxLength="4" sap:label="Code Département/Zone"/>
+                <Property Name="EquipSegmentCode" Type="Edm.String" MaxLength="3" sap:label="Code Segment Équipement"/>
+            </EntityType>
+            <EntityContainer Name="Z_CDS_ACM_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Z_CDS_ACM" EntityType="Z_CDS_ACM_CDS.Z_CDS_ACMType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_VH_EQART" EntityType="Z_CDS_ACM_CDS.Z_VH_EQARTType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_VH_EQTYP" EntityType="Z_CDS_ACM_CDS.Z_VH_EQTYPType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_VH_EQUNR" EntityType="Z_CDS_ACM_CDS.Z_VH_EQUNRType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_VH_IAKOSIST" EntityType="Z_CDS_ACM_CDS.Z_VH_IAKOSISTType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_VH_INGRP" EntityType="Z_CDS_ACM_CDS.Z_VH_INGRPType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_VH_IWERK" EntityType="Z_CDS_ACM_CDS.Z_VH_IWERKType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_VH_SPMON" EntityType="Z_CDS_ACM_CDS.Z_VH_SPMONType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_VH_SWERK" EntityType="Z_CDS_ACM_CDS.Z_VH_SWERKType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_VH_TPLNR" EntityType="Z_CDS_ACM_CDS.Z_VH_TPLNRType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACMType/Equipment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value Help pour Numéro d''Équipement"/>
+                        <PropertyValue Property="CollectionPath" String="Z_VH_EQUNR"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Equipment"/>
+                                    <PropertyValue Property="ValueListProperty" String="Equipment"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Equipment_Description"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACMType/Poste_Technique" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="value help pour Poste technique"/>
+                        <PropertyValue Property="CollectionPath" String="Z_VH_TPLNR"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Poste_Technique"/>
+                                    <PropertyValue Property="ValueListProperty" String="Poste_Technique"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SiteCode"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="DeptCode"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="EquipSegmentCode"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACMType/Date_Mois" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="value help pour les mois"/>
+                        <PropertyValue Property="CollectionPath" String="Z_VH_SPMON"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Date_Mois"/>
+                                    <PropertyValue Property="ValueListProperty" String="mois_du_maintenance"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="nom_du_mois"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="annee"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACMType/Division_Localisation" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="value help pour Division de localisation"/>
+                        <PropertyValue Property="CollectionPath" String="Z_VH_SWERK"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Division_Localisation"/>
+                                    <PropertyValue Property="ValueListProperty" String="Division_Localisation"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Division_Localisation_Desc"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACMType/Division" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="value help pour Division planification"/>
+                        <PropertyValue Property="CollectionPath" String="Z_VH_IWERK"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Division"/>
+                                    <PropertyValue Property="ValueListProperty" String="Division"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Division_Desc"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACMType/Groupe_Gestionnaire" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="value help pour Groupe gestionnaire"/>
+                        <PropertyValue Property="CollectionPath" String="Z_VH_INGRP"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Groupe_Gestionnaire"/>
+                                    <PropertyValue Property="ValueListProperty" String="Groupe_Gestionnaire"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Groupe_Gestionnaire_Des"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACMType/Total_couts_reels" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="value help pour Poste technique"/>
+                        <PropertyValue Property="CollectionPath" String="Z_VH_IAKOSIST"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Total_couts_reels"/>
+                                    <PropertyValue Property="ValueListProperty" String="couts_reels"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Total_couts_reels"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACMType/Categorie_Equipment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="value help pour Catégorie d’équipement"/>
+                        <PropertyValue Property="CollectionPath" String="Z_VH_EQTYP"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Categorie_Equipment"/>
+                                    <PropertyValue Property="ValueListProperty" String="Categorie_Equipment"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Description_Categorie"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACMType/Type_Objet_Technique" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="value help pour Type d’objet technique"/>
+                        <PropertyValue Property="CollectionPath" String="Z_VH_EQART"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Type_Objet_Technique"/>
+                                    <PropertyValue Property="ValueListProperty" String="Type_Objet_Technique"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Description_Type"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Z_CDS_ACM_CDS.Z_CDS_ACM_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+            </Annotations>
+            <atom:link rel="self" href="https://sap-dv-s4-1.infra.smartpost.tn:44300/sap/opu/odata/sap/Z_CDS_ACM_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://sap-dv-s4-1.infra.smartpost.tn:44300/sap/opu/odata/sap/Z_CDS_ACM_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
