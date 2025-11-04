@@ -36,7 +36,8 @@ pipeline {
         stage('Deploy (Simulation)') {
             steps {
                 // echo 'Déploiement simulé – application déjà sur Fiori Launchpad'
-                   bat 'ui5 deploy --config ui5.yaml'
+                   bat 'npx ui5 deploy --config ui5.yaml'
+
 
  
             }
