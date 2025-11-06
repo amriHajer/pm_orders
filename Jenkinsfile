@@ -4,52 +4,53 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                echo 'Clonage du dépôt'
                 git branch: 'main', url: 'https://github.com/amriHajer/pm_orders.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
+                echo 'Installation des dépendances'
                 bat 'npm install'
             }
         }
 
         stage('Build') {
             steps {
+                echo 'Construction du projet UI5'
                 bat 'npm run build'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Tests ignorés pour cette version'
-                // bat 'npm test || echo "Tests ignorés pour cette version"'
+                echo 'Étape de test (désactivée pour cette version)'
+                // Si tu ajoutes plus tard des tests : bat 'npm test'
             }
         }
 
-        stage('Archive Build') {
+        stage('Deploy to SAP Fiori Launchpad') {
             steps {
-                archiveArtifacts artifacts: 'dist/**', fingerprint: true
+                echo 'Déploiement sur SAP Fiori Launchpad'
+                bat 'npm run deploy'
             }
         }
 
-        stage('Deploy (Simulation)') {
+        stage('Clean up') {
             steps {
-                // echo 'Déploiement simulé – application déjà sur Fiori Launchpad'
-                   bat 'npx ui5 deploy --config ui5.yaml'
-
-
- 
+                echo 'Nettoyage des fichiers temporaires'
+                bat 'rimraf archive.zip'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline exécuté avec succès !'
+            echo 'Pipeline exécuté avec succès ! Application déployée'
         }
         failure {
-            echo 'Erreur dans le pipeline ! Vérifie les logs.'
+            echo 'Erreur dans le pipeline. Vérifie les logs Jenkins'
         }
     }
 }
