@@ -26,7 +26,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Étape de test (désactivée pour cette version)'
-                // Si tu ajoutes plus tard des tests : bat 'npm test'
             }
         }
 
@@ -40,7 +39,7 @@ pipeline {
         stage('Clean up') {
             steps {
                 echo 'Nettoyage des fichiers temporaires'
-                bat 'rimraf archive.zip'
+                bat 'npx rimraf archive.zip'
             }
         }
     }
